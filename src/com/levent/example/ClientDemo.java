@@ -6,7 +6,9 @@ import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Main {
+import com.levent.greeter.IGreet;
+
+public class ClientDemo {
 
 	public static void main(String[] args) {
 		//Relative path
@@ -18,9 +20,11 @@ public class Main {
 		try {
 			url = new URL("file:///" + s + "/lib/greeter.jar");
 			URLClassLoader ucl = new URLClassLoader( new URL[] {url} );
-			Class clazz = ucl.loadClass("com.levent.Greet");
+			Class clazz = ucl.loadClass("com.levent.greeter.Greet");
 			Object o = clazz.newInstance();
+			IGreet iGreet = (IGreet) o;
 			System.out.println(o.toString());	// print out the hashCode of the class
+			System.out.println(iGreet.getQuote());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
