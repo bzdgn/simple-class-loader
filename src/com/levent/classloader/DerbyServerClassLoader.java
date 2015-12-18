@@ -27,8 +27,8 @@ public class DerbyServerClassLoader extends ClassLoader {
 		Class cls = null;
 		
 		try {
-			cls = parent.loadClass(name);
-		} catch (ClassNotFoundException clnfE) {
+			cls = parent.loadClass(name);			// Delegate to the parent Class Loader
+		} catch (ClassNotFoundException clnfE) {	// If parent fails, try to locate and load the class
 			byte[] bytes = new byte[0];
 			try {
 				bytes = loadClassFromDatabase(name);
