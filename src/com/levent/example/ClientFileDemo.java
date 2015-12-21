@@ -22,7 +22,9 @@ public class ClientFileDemo {
 			URLClassLoader ucl = new URLClassLoader( new URL[] {url} );
 			Class clazz = ucl.loadClass("com.levent.greeter.Greet");
 			Object o = clazz.newInstance();
+			
 			IGreet iGreet = (IGreet) o;
+			
 			System.out.println(o.toString());	// print out the hashCode of the class
 			System.out.println(iGreet.getQuote());
 		} catch (MalformedURLException e) {
